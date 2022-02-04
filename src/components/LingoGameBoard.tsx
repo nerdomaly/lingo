@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { LingoWord } from './LingoWord';
+import React, { useEffect, useState } from "react";
+import { LingoGuess } from "./LingoGuess";
 
 const isAlpha = (letter: string) => {
     return /^[a-zA-Z]/.test(letter);
@@ -9,7 +9,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
     props
 ) => {
     let [guesses, setGuesses] = useState<Array<string>>(
-        Array<string>(6).fill('')
+        Array<string>(6).fill("")
     );
     let [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
 
@@ -27,7 +27,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
             }
         }
 
-        if (event.key === 'Backspace') {
+        if (event.key === "Backspace") {
             const newGuesses = guesses.slice();
 
             newGuesses[currentGuessIndex] = newGuesses[
@@ -37,7 +37,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
             setGuesses(newGuesses);
         }
 
-        if (event.key === 'Enter') {
+        if (event.key === "Enter") {
             if (guesses[currentGuessIndex].length === 5) {
                 setCurrentGuessIndex(currentGuessIndex + 1);
             }
@@ -45,10 +45,10 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
     };
 
     useEffect(() => {
-        document.addEventListener('keydown', handleKeyPress);
+        document.addEventListener("keydown", handleKeyPress);
 
         return () => {
-            document.removeEventListener('keydown', handleKeyPress);
+            document.removeEventListener("keydown", handleKeyPress);
         };
     });
 
@@ -57,7 +57,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
             <div>Lingo!</div>
             {guesses.map((guess, index) => {
                 return (
-                    <LingoWord
+                    <LingoGuess
                         key={`LingoWord${index}`}
                         word={props.word}
                         guess={guess}

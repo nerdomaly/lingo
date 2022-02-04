@@ -1,7 +1,7 @@
-import React from 'react';
-import { LingoLetter } from './LingoLetter';
+import React from "react";
+import { LingoLetter } from "./LingoLetter";
 
-export const LingoWord: React.FunctionComponent<{
+export const LingoGuess: React.FunctionComponent<{
     word: string;
     guess?: string;
     check?: boolean;
