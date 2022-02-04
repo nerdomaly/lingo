@@ -1,11 +1,24 @@
 import React from "react";
+import "./LingoGuess.scss";
 import { LingoLetter } from "./LingoLetter";
 
 export const LingoGuess: React.FunctionComponent<{
     word: string;
     guess?: string;
-    check?: boolean;
+    active: boolean;
 }> = (props) => {
+    const isCorrectPlace = (guessLetter: string, wordLetter: string) => {
+        if (props.active || guessLetter === "") return false;
+
+        return guessLetter === wordLetter;
+    };
+
+    const isCorrectLetter = (guessLetter: string, word: string) => {
+        if (props.active || guessLetter === "") return false;
+
+        return word.indexOf(guessLetter) > -1;
+    };
+
     const lingoLetters = (): Array<React.ReactNode> => {
         const items: Array<React.ReactNode> = [];
 
@@ -14,6 +27,14 @@ export const LingoGuess: React.FunctionComponent<{
                 <LingoLetter
                     key={`LingoLetter${i}`}
                     letter={props.guess?.[i]}
+                    correctPlace={isCorrectPlace(
+                        props.guess?.[i] ?? "",
+                        props.word[i]
+                    )}
+                    correctLetter={isCorrectLetter(
+                        props.guess?.[i] ?? "",
+                        props.word
+                    )}
                 />
             );
         }
@@ -21,5 +42,9 @@ export const LingoGuess: React.FunctionComponent<{
         return items;
     };
 
-    return <div>{lingoLetters()}</div>;
+    return (
+        <div className={`${props.active ? "active" : ""}`}>
+            {lingoLetters()}
+        </div>
+    );
 };

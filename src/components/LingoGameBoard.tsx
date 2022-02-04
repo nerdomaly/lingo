@@ -61,6 +61,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
                         key={`LingoWord${index}`}
                         word={props.word}
                         guess={guess}
+                        active={index === currentGuessIndex}
                     />
                 );
             })}

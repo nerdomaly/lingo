@@ -9,7 +9,7 @@ function GetRandom(max: number) {
 
 function App() {
     const [word] = useState(
-        FIVE_LETTER_WORDS[GetRandom(FIVE_LETTER_WORDS.length)]
+        FIVE_LETTER_WORDS[GetRandom(FIVE_LETTER_WORDS.length)].toUpperCase()
     );
 
     console.log(word);
