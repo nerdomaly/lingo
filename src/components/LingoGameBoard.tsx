@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FIVE_LETTER_WORDS } from "../constants/five-letter-words";
 import { LingoGuess } from "./LingoGuess";
 
 const isAlpha = (letter: string) => {
@@ -39,7 +40,13 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
 
         if (event.key === "Enter") {
             if (guesses[currentGuessIndex].length === 5) {
-                setCurrentGuessIndex(currentGuessIndex + 1);
+                if (
+                    FIVE_LETTER_WORDS.includes(
+                        guesses[currentGuessIndex].toLowerCase()
+                    )
+                ) {
+                    setCurrentGuessIndex(currentGuessIndex + 1);
+                }
             }
         }
     };

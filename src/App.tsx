@@ -12,7 +12,6 @@ function App() {
         FIVE_LETTER_WORDS[GetRandom(FIVE_LETTER_WORDS.length)].toUpperCase()
     );
 
-    console.log(word);
     return (
         <div className="App">
             <LingoGameBoard word={word} />
