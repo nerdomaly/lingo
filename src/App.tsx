@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import "./App.scss";
 import { LingoGameBoard } from "./components/LingoGameBoard";
 import { FIVE_LETTER_WORDS } from "./constants/five-letter-words";
@@ -8,9 +8,15 @@ function GetRandom(max: number) {
 }
 
 function App() {
-    const [word] = useState(
-        FIVE_LETTER_WORDS[GetRandom(FIVE_LETTER_WORDS.length)].toUpperCase()
-    );
+    const word = useMemo(() => {
+        let retVal =
+            FIVE_LETTER_WORDS[
+                GetRandom(FIVE_LETTER_WORDS.length)
+            ].toUpperCase();
+
+        console.log("App: " + retVal);
+        return retVal;
+    }, []);
 
     return (
         <div className="App">

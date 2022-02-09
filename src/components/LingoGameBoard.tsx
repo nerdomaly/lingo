@@ -45,6 +45,8 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
                         guesses[currentGuessIndex].toLowerCase()
                     )
                 ) {
+                    console.log("word:" + props.word);
+                    console.log("guess:" + guesses[currentGuessIndex]);
                     setCurrentGuessIndex(currentGuessIndex + 1);
                 }
             }
@@ -69,6 +71,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
                         word={props.word}
                         guess={guess}
                         active={index === currentGuessIndex}
+                        solve={currentGuessIndex > index}
                     />
                 );
             })}

@@ -6,15 +6,16 @@ export const LingoGuess: React.FunctionComponent<{
     word: string;
     guess?: string;
     active: boolean;
+    solve: boolean;
 }> = (props) => {
     const isCorrectPlace = (guessLetter: string, wordLetter: string) => {
-        if (props.active || guessLetter === "") return false;
+        if (!props.solve) return false;
 
         return guessLetter === wordLetter;
     };
 
     const isCorrectLetter = (guessLetter: string, word: string) => {
-        if (props.active || guessLetter === "") return false;
+        if (!props.solve) return false;
 
         return word.indexOf(guessLetter) > -1;
     };
@@ -35,6 +36,7 @@ export const LingoGuess: React.FunctionComponent<{
                         props.guess?.[i] ?? "",
                         props.word
                     )}
+                    solve={props.solve}
                 />
             );
         }
