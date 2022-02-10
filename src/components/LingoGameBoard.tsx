@@ -41,9 +41,10 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
         if (event.key === "Enter") {
             if (guesses[currentGuessIndex].length === 5) {
                 if (
-                    FIVE_LETTER_WORDS.includes(
-                        guesses[currentGuessIndex].toLowerCase()
-                    )
+                    FIVE_LETTER_WORDS.filter(
+                        (x) =>
+                            x.word === guesses[currentGuessIndex].toLowerCase()
+                    ).length > 0
                 ) {
                     console.log("word:" + props.word);
                     console.log("guess:" + guesses[currentGuessIndex]);

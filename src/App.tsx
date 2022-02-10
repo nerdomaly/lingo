@@ -9,10 +9,11 @@ function GetRandom(max: number) {
 
 function App() {
     const word = useMemo(() => {
-        let retVal =
-            FIVE_LETTER_WORDS[
-                GetRandom(FIVE_LETTER_WORDS.length)
-            ].toUpperCase();
+        let solutionSet = FIVE_LETTER_WORDS.filter((x) => x.solution === 1).map(
+            (x) => x.word
+        );
+
+        let retVal = solutionSet[GetRandom(solutionSet.length)].toUpperCase();
 
         console.log("App: " + retVal);
         return retVal;
