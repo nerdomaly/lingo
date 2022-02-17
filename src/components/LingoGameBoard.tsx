@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { FIVE_LETTER_WORDS } from "../constants/five-letter-words";
+import { useAppSelector } from "../hooks";
+import { selectSolution } from "../slices/solutionSlice";
 import { LingoGuess } from "./LingoGuess";
 
 const isAlpha = (letter: string) => {
     return /^[a-zA-Z]/.test(letter);
 };
 
-export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
-    props
-) => {
+export const LingoGameBoard: React.FunctionComponent = () => {
+    const solution = useAppSelector(selectSolution);
+
     let [guesses, setGuesses] = useState<Array<string>>(
         Array<string>(6).fill("")
     );
@@ -46,7 +48,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
                             x.word === guesses[currentGuessIndex].toLowerCase()
                     ).length > 0
                 ) {
-                    console.log("word:" + props.word);
+                    console.log("word:" + solution);
                     console.log("guess:" + guesses[currentGuessIndex]);
                     setCurrentGuessIndex(currentGuessIndex + 1);
                 }
@@ -69,7 +71,7 @@ export const LingoGameBoard: React.FunctionComponent<{ word: string }> = (
                 return (
                     <LingoGuess
                         key={`LingoWord${index}`}
-                        word={props.word}
+                        word={solution}
                         guess={guess}
                         active={index === currentGuessIndex}
                         solve={currentGuessIndex > index}

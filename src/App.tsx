@@ -1,27 +1,33 @@
-import React, { useMemo } from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import { LingoGameBoard } from "./components/LingoGameBoard";
 import { FIVE_LETTER_WORDS } from "./constants/five-letter-words";
 
-function GetRandom(max: number) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
+import { setSolution } from "./slices/solutionSlice";
+
+import { useAppDispatch } from "./hooks";
 
 function App() {
-    const word = useMemo(() => {
+    const dispatch = useAppDispatch();
+
+    const getRandomNumber = (max: number) => {
+        return Math.floor(Math.random() * Math.floor(max));
+    };
+
+    useEffect(() => {
         let solutionSet = FIVE_LETTER_WORDS.filter((x) => x.solution === 1).map(
             (x) => x.word
         );
 
-        let retVal = solutionSet[GetRandom(solutionSet.length)].toUpperCase();
+        let retVal =
+            solutionSet[getRandomNumber(solutionSet.length)].toUpperCase();
 
-        console.log("App: " + retVal);
-        return retVal;
-    }, []);
+        dispatch(setSolution(retVal));
+    });
 
     return (
         <div className="App">
-            <LingoGameBoard word={word} />
+            <LingoGameBoard />
         </div>
     );
 }
