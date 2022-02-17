@@ -16,7 +16,13 @@ export const solutionSlice = createSlice({
     initialState,
     reducers: {
         setSolution: (state, action: PayloadAction<string>) => {
-            console.log(`setSolution: ${action.payload}`);
+            if (
+                !process.env.NODE_ENV ||
+                process.env.NODE_ENV === "development"
+            ) {
+                console.log(`setSolution: ${action.payload}`);
+            }
+
             state.value += action.payload;
         },
     },

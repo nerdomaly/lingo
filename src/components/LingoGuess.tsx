@@ -1,13 +1,16 @@
 import React from "react";
+import { useAppSelector } from "../hooks";
+import { selectSolution } from "../slices/solutionSlice";
 import "./LingoGuess.scss";
 import { LingoLetter } from "./LingoLetter";
 
 export const LingoGuess: React.FunctionComponent<{
-    word: string;
     guess?: string;
     active: boolean;
     solve: boolean;
 }> = (props) => {
+    const solution = useAppSelector(selectSolution);
+
     const isCorrectPlace = (guessLetter: string, wordLetter: string) => {
         if (!props.solve) return false;
 
@@ -30,11 +33,11 @@ export const LingoGuess: React.FunctionComponent<{
                     letter={props.guess?.[i]}
                     correctPlace={isCorrectPlace(
                         props.guess?.[i] ?? "",
-                        props.word[i]
+                        solution[i]
                     )}
                     correctLetter={isCorrectLetter(
                         props.guess?.[i] ?? "",
-                        props.word
+                        solution
                     )}
                     solve={props.solve}
                 />
