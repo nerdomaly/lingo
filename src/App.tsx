@@ -6,13 +6,10 @@ import { FIVE_LETTER_WORDS } from "./constants/five-letter-words";
 import { setSolution } from "./slices/solutionSlice";
 
 import { useAppDispatch } from "./hooks";
+import { getRandomNumber } from "./utils";
 
 function App() {
     const dispatch = useAppDispatch();
-
-    const getRandomNumber = (max: number) => {
-        return Math.floor(Math.random() * Math.floor(max));
-    };
 
     useEffect(() => {
         let solutionSet = FIVE_LETTER_WORDS.filter((x) => x.solution === 1).map(

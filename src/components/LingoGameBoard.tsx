@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FIVE_LETTER_WORDS } from "../constants/five-letter-words";
+import { isAlpha } from "../utils";
 import { LingoGuess } from "./LingoGuess";
-
-const isAlpha = (letter: string) => {
-    return /^[a-zA-Z]/.test(letter);
-};
 
 export const LingoGameBoard: React.FunctionComponent = () => {
     let [guesses, setGuesses] = useState<Array<string>>(
