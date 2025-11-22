@@ -47,5 +47,6 @@
     },
     "prettier": {
         "tabWidth": 4
-    }
+    },
+    "packageManager": "yarn@4.11.0"
 }
