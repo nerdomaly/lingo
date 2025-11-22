@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useAppSelector } from "../hooks";
 import { selectSolution } from "../slices/solutionSlice";
-import "./LingoGuess.scss";
 import { LingoLetter } from "./LingoLetter";
+
+const GuessWrapper = styled.div<{ $active: boolean }>`
+    ${(props) =>
+        props.$active &&
+        `
+        background-color: rgba(255, 255, 255, 0.2);
+    `}
+`;
 
 export const LingoGuess: React.FunctionComponent<{
     guess?: string;
@@ -70,8 +78,8 @@ export const LingoGuess: React.FunctionComponent<{
     };
 
     return (
-        <div className={`${props.active ? "active" : ""}`}>
+        <GuessWrapper $active={props.active}>
             {lingoLetters()}
-        </div>
+        </GuessWrapper>
     );
 };
