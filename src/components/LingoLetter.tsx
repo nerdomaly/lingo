@@ -3,8 +3,7 @@ import "./LingoLetter.scss";
 
 export const LingoLetter: React.FunctionComponent<{
     letter?: string;
-    correctLetter: boolean;
-    correctPlace: boolean;
+    status: string;
     solve: boolean;
 }> = (props) => {
     return (
@@ -13,15 +12,7 @@ export const LingoLetter: React.FunctionComponent<{
                 <div className={`flip-card-front `}>
                     {props.letter ?? <>&nbsp;</>}
                 </div>
-                <div
-                    className={`flip-card-back ${
-                        props.correctPlace ? "correctPlace" : ""
-                    } ${
-                        props.correctLetter && !props.correctPlace
-                            ? "correctLetter"
-                            : ""
-                    }`}
-                >
+                <div className={`flip-card-back ${props.status}`}>
                     {props.letter ?? <>&nbsp;</>}
                 </div>
             </div>

@@ -35,16 +35,28 @@
             backface-visibility: hidden;
         }
 
+        .flip-card-front {
+            background-color: #282c34;
+            z-index: 1;
+            transform: rotateY(0deg) translateZ(1px);
+        }
+
+
         /* Style the back side */
         .flip-card-back {
-            transform: rotateY(180deg);
+            transform: rotateY(180deg) translateZ(1px);
+            z-index: 0;
 
-            &.correctPlace {
+            &.correct {
                 background-color: rgba(0, 255, 0, 0.2);
             }
 
-            &.correctLetter {
+            &.present {
                 background-color: rgba(255, 255, 0, 0.8);
+            }
+
+            &.absent {
+                background-color: #3a3a3c;
             }
         }
     }
